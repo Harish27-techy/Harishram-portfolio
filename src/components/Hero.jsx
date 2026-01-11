@@ -4,29 +4,19 @@ import resumePdf from "../assets/HarishramResume.pdf";
 
 export default function Hero() {
   const scrollToContact = () => {
-    const section = document.getElementById("contact");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    document
+      .getElementById("contact")
+      ?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section
       id="home"
       style={{
-        padding: "160px 24px 140px",
+        padding: "160px 0 120px",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1.2fr 0.8fr",
-          gap: "60px",
-          alignItems: "center",
-        }}
-      >
+      <div className="container hero-grid">
         {/* LEFT CONTENT */}
         <div>
           <p
@@ -34,7 +24,7 @@ export default function Hero() {
               fontSize: "14px",
               letterSpacing: "0.18em",
               color: "rgba(255,255,255,0.6)",
-              marginBottom: "14px",
+              marginBottom: "12px",
             }}
           >
             HI, I’M
@@ -42,10 +32,10 @@ export default function Hero() {
 
           <h1
             style={{
-              fontSize: "clamp(44px, 6vw, 72px)",
+              fontSize: "clamp(42px, 6vw, 72px)",
               fontWeight: 900,
               lineHeight: 1.1,
-              marginBottom: "18px",
+              marginBottom: "16px",
             }}
           >
             Harishram{" "}
@@ -68,7 +58,8 @@ export default function Hero() {
               gap: "10px",
               fontSize: "18px",
               color: "rgba(255,255,255,0.85)",
-              marginBottom: "26px",
+              marginBottom: "24px",
+              flexWrap: "wrap",
             }}
           >
             <Laptop size={18} />
@@ -86,14 +77,14 @@ export default function Hero() {
           >
             Results-driven Software Engineer with 3+ years of experience
             building scalable, high-performance web applications using
-            Angular, Node.js, and AWS technologies.
+            Angular, Node.js, and cloud technologies.
           </p>
 
           {/* BUTTONS */}
           <div
             style={{
               display: "flex",
-              gap: "22px",
+              gap: "20px",
               flexWrap: "wrap",
             }}
           >
@@ -112,20 +103,13 @@ export default function Hero() {
                 color: "#fff",
                 fontWeight: 700,
                 textDecoration: "none",
-                transition: "transform 0.25s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
               <Download size={18} />
               Download Resume
             </a>
 
-            {/* CONTACT ME */}
+            {/* CONTACT */}
             <button
               onClick={scrollToContact}
               style={{
@@ -135,18 +119,10 @@ export default function Hero() {
                 padding: "14px 28px",
                 borderRadius: "999px",
                 background: "transparent",
-                border: "1px solid rgba(255,255,255,0.35)",
+                border: "1px solid rgba(255,255,255,0.4)",
                 color: "#fff",
                 fontWeight: 600,
                 cursor: "pointer",
-                transition: "all 0.25s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background =
-                  "rgba(255,255,255,0.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
               }}
             >
               <Mail size={18} />
@@ -164,8 +140,8 @@ export default function Hero() {
         >
           <div
             style={{
-              width: "320px",
-              height: "320px",
+              width: "300px",
+              height: "300px",
               borderRadius: "50%",
               background:
                 "linear-gradient(135deg, rgba(99,102,241,0.35), rgba(34,211,238,0.35))",
@@ -178,8 +154,8 @@ export default function Hero() {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
                 borderRadius: "50%",
+                objectFit: "cover",
               }}
             />
           </div>

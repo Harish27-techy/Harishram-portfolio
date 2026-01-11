@@ -1,6 +1,10 @@
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   const navItems = [
-    { label: "Home", id: "home" },
     { label: "About", id: "about" },
     { label: "Experience", id: "experience" },
     { label: "Skills", id: "skills" },
@@ -9,71 +13,52 @@ export default function Navbar() {
     { label: "Contact", id: "contact" },
   ];
 
-  const handleScroll = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setOpen(false);
   };
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-      <div
-        style={{
-          background: "rgba(255,255,255,0.12)",
-          backdropFilter: "blur(24px)",
-          border: "1px solid rgba(255,255,255,0.25)",
-          borderRadius: "999px",
-          padding: "14px 28px",
-          display: "flex",
-          alignItems: "center",
-          gap: "26px",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
-        }}
-      >
+    <nav className="navbar">
+      <div className="navbar-inner">
         {/* LOGO */}
-        <span
-          onClick={() => handleScroll("home")}
-          style={{
-            fontWeight: 800,
-            fontSize: "18px",
-            letterSpacing: "0.08em",
-            color: "#6366f1",
-            cursor: "pointer",
-          }}
-        >
-          HARISHRAM<span style={{ color: "#ec4899" }}>.</span>
-        </span>
+        <div className="nav-logo" onClick={() => scrollTo("home")}>
+          HARISHRAM
+        </div>
 
-        {/* NAV ITEMS */}
-        {navItems.map((item) => (
-          <span
-            key={item.id}
-            onClick={() => handleScroll(item.id)}
-            style={{
-              padding: "8px 14px",
-              borderRadius: "999px",
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              color: "rgba(255,255,255,0.85)",
-              cursor: "pointer",
-              transition: "all 0.25s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background =
-                "linear-gradient(135deg, #6366f1, #22d3ee)";
-              e.target.style.color = "#fff";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = "transparent";
-              e.target.style.color = "rgba(255,255,255,0.85)";
-            }}
-          >
-            {item.label}
-          </span>
-        ))}
+        {/* DESKTOP NAV */}
+        <div className="nav-items">
+          {navItems.map((item) => (
+            <div
+              key={item.id}
+              className="nav-item"
+              onClick={() => scrollTo(item.id)}
+            >
+              {item.label}
+            </div>
+          ))}
+        </div>
+
+        {/* HAMBURGER (MOBILE ONLY) */}
+        <div className="hamburger" onClick={() => setOpen(!open)}>
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </div>
       </div>
+
+      {/* MOBILE MENU */}
+      {open && (
+        <div className="mobile-menu">
+          {navItems.map((item) => (
+            <div
+              key={item.id}
+              className="mobile-item"
+              onClick={() => scrollTo(item.id)}
+            >
+              {item.label}
+            </div>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
