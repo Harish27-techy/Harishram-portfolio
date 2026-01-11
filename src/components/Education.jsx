@@ -1,4 +1,5 @@
 import { GraduationCap, Calendar, School } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Education() {
   const education = [
@@ -19,9 +20,13 @@ export default function Education() {
   return (
     <section id="education" style={{ padding: "140px 24px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* SECTION HEADER */}
+        {/* HEADER */}
         <div style={{ textAlign: "center", marginBottom: "90px" }}>
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -37,16 +42,23 @@ export default function Education() {
           >
             <GraduationCap size={14} />
             EDUCATION
-          </div>
+          </motion.div>
 
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 70, scale: 0.92 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.6 }}
+            transition={{
+              duration: 0.9,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             style={{
               fontSize: "clamp(36px, 5vw, 56px)",
               fontWeight: 900,
             }}
           >
             Academic Background
-          </h2>
+          </motion.h2>
         </div>
 
         {/* EDUCATION CARDS */}
@@ -58,8 +70,17 @@ export default function Education() {
           }}
         >
           {education.map((edu, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 90, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.4 }}
+              transition={{
+                delay: index * 0.15,
+                duration: 0.9,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              whileHover={{ y: -8 }}
               style={{
                 background: "rgba(255,255,255,0.08)",
                 border: "1px solid rgba(255,255,255,0.2)",
@@ -69,7 +90,11 @@ export default function Education() {
               }}
             >
               {/* DEGREE */}
-              <h3
+              <motion.h3
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: 0.25, duration: 0.6 }}
                 style={{
                   fontSize: "20px",
                   fontWeight: 800,
@@ -77,10 +102,14 @@ export default function Education() {
                 }}
               >
                 {edu.degree}
-              </h3>
+              </motion.h3>
 
               {/* INSTITUTION */}
-              <div
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: 0.35, duration: 0.6 }}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -91,10 +120,14 @@ export default function Education() {
               >
                 <School size={16} />
                 {edu.institution}
-              </div>
+              </motion.div>
 
               {/* DURATION */}
-              <div
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: 0.45, duration: 0.6 }}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -106,10 +139,19 @@ export default function Education() {
               >
                 <Calendar size={14} />
                 {edu.duration}
-              </div>
+              </motion.div>
 
               {/* SCORE */}
-              <div
+              <motion.div
+                initial={{ opacity: 0, scale: 0.6 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false }}
+                transition={{
+                  delay: 0.6,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 18,
+                }}
                 style={{
                   marginTop: "18px",
                   display: "inline-block",
@@ -123,8 +165,8 @@ export default function Education() {
                 }}
               >
                 {edu.score}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>

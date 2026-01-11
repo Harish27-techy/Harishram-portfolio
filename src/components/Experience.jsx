@@ -1,4 +1,5 @@
 import { Briefcase, Calendar, Building2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Experience() {
   const experiences = [
@@ -32,11 +33,15 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" style={{ padding: "140px 0" }}>
-      <div className="container">
+    <section id="experience" style={{ padding: "140px 24px" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* HEADER */}
         <div style={{ textAlign: "center", marginBottom: "90px" }}>
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -52,24 +57,54 @@ export default function Experience() {
           >
             <Briefcase size={14} />
             EXPERIENCE
-          </div>
+          </motion.div>
 
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 60, scale: 0.92 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.6 }}
+            transition={{
+              duration: 0.9,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             style={{
               fontSize: "clamp(36px, 5vw, 56px)",
               fontWeight: 900,
             }}
           >
             Professional Journey
-          </h2>
+          </motion.h2>
         </div>
 
-        {/* EXPERIENCE LIST */}
+        {/* EXPERIENCE CARDS */}
         <div style={{ display: "grid", gap: "40px" }}>
           {experiences.map((exp, index) => (
-            <div key={index} className="experience-card">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 80, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.4 }}
+              transition={{
+                duration: 0.9,
+                delay: index * 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              whileHover={{ y: -6 }}
+              style={{
+                display: "grid",
+                background: "rgba(255,255,255,0.08)",
+                border: "1px solid rgba(255,255,255,0.2)",
+                borderRadius: "22px",
+                backdropFilter: "blur(20px)",
+                overflow: "hidden",
+              }}
+            >
               {/* LEFT PANEL */}
-              <div
+              <motion.div
+                initial={{ x: -60, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.8, delay: 0.15 }}
                 style={{
                   padding: "28px",
                   background:
@@ -103,11 +138,21 @@ export default function Experience() {
                   <Calendar size={14} />
                   {exp.duration}
                 </div>
-              </div>
+              </motion.div>
 
               {/* RIGHT PANEL */}
-              <div style={{ padding: "36px" }}>
-                <div
+              <motion.div
+                initial={{ x: 60, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.8, delay: 0.25 }}
+                style={{ padding: "36px" }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -119,18 +164,27 @@ export default function Experience() {
                 >
                   <Briefcase size={18} />
                   {exp.role}
-                </div>
+                </motion.div>
 
+                {/* POINTS */}
                 <div style={{ display: "grid", gap: "14px" }}>
                   {exp.points.map((point, i) => (
-                    <div
+                    <motion.div
                       key={i}
+                      initial={{ opacity: 0, x: 40 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: false }}
+                      transition={{
+                        delay: 0.45 + i * 0.08,
+                        duration: 0.5,
+                      }}
                       style={{
                         display: "flex",
                         alignItems: "flex-start",
                         gap: "14px",
                       }}
                     >
+                      {/* BULLET */}
                       <div
                         style={{
                           marginTop: "6px",
@@ -144,6 +198,7 @@ export default function Experience() {
                           flexShrink: 0,
                         }}
                       />
+
                       <p
                         style={{
                           fontSize: "15px",
@@ -153,11 +208,11 @@ export default function Experience() {
                       >
                         {point}
                       </p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>

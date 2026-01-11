@@ -17,13 +17,74 @@
    BODY
 ================================ */
 body {
-  background:
-    radial-gradient(1000px at 10% 10%, rgba(99,102,241,0.25), transparent 40%),
-    radial-gradient(900px at 90% 20%, rgba(34,211,238,0.25), transparent 40%),
-    #020617;
+  background: #020617;
   color: #e5e7eb;
   font-family: Inter, system-ui, sans-serif;
+  overflow-x: hidden;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(217, 119, 6, 0.18),
+      rgba(15, 118, 110, 0.22),
+      rgba(30, 64, 175, 0.26),
+      rgba(88, 28, 135, 0.22),
+      rgba(217, 119, 6, 0.18)
+    );
+
+  background-size: 400% 400%;
+  filter: blur(120px) saturate(110%);
+  animation: spectralShift 38s linear infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -30%;
+  z-index: -2;
+
+  background:
+    conic-gradient(
+      from 0deg at 50% 50%,
+      rgba(15, 23, 42, 0.95),
+      rgba(2, 6, 23, 0.95),
+      rgba(15, 23, 42, 0.95)
+    );
+
+  animation: lightRotate 90s linear infinite;
+}
+
+@keyframes spectralShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes lightRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.05);
+  }
+}
+
+
+
+
 /* ===============================
    TYPOGRAPHY
 ================================ */
@@ -47,7 +108,7 @@ body {
 ================================ */
 .glass {
   background: var(--panel);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(4px);
   border: 1px solid var(--border);
   border-radius: 18px;
 }
@@ -71,6 +132,7 @@ body {
 }
 
 .nav-item::after {
+  color: rgba(255,255,255,0.85) !important;
   content: "";
   position: absolute;
   left: 0;

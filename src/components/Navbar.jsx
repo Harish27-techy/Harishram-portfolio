@@ -1,16 +1,26 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  User,
+  Code2,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Mail,
+  ShieldCheck,
+} from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const navItems = [
-    { label: "About", id: "about" },
-    { label: "Experience", id: "experience" },
-    { label: "Skills", id: "skills" },
-    { label: "Education", id: "education" },
-    { label: "Awards", id: "awards" },
-    { label: "Contact", id: "contact" },
+    { label: "About", id: "about", icon: <User size={16} /> },
+    { label: "Skills", id: "skills", icon: <Code2 size={16} /> },
+    { label: "Experience", id: "experience", icon: <Briefcase size={16} /> },
+    { label: "Education", id: "education", icon: <GraduationCap size={16} /> },
+    { label: "Awards", id: "awards", icon: <Award size={16} /> },
+    { label: "Contact", id: "contact", icon: <Mail size={16} /> },
   ];
 
   const scrollTo = (id) => {
@@ -21,25 +31,61 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        {/* LOGO */}
-        <div className="nav-logo" onClick={() => scrollTo("home")}>
-          HARISHRAM
+        {/* LEFT BRAND */}
+        <div
+          className="nav-logo"
+          onClick={() => scrollTo("home")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            cursor: "pointer",
+          }}
+        >
+          {/* PROFESSIONAL LOGO ICON */}
+          <ShieldCheck
+            size={22}
+            style={{
+              color: "#c7d2fe",
+            }}
+          />
+
+          {/* PREMIUM GRADIENT TEXT */}
+          <span
+            style={{
+              fontWeight: 900,
+              letterSpacing: "0.08em",
+              fontSize: "15px",
+              background:
+                "linear-gradient(90deg, #e0e7ff 0%, #c7d2fe 35%, #f8fafc 70%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            HARISHRAM
+          </span>
         </div>
 
-        {/* DESKTOP NAV */}
+        {/* RIGHT DESKTOP NAV */}
         <div className="nav-items">
           {navItems.map((item) => (
             <div
               key={item.id}
               className="nav-item"
               onClick={() => scrollTo(item.id)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
             >
+              {item.icon}
               {item.label}
             </div>
           ))}
         </div>
 
-        {/* HAMBURGER (MOBILE ONLY) */}
+        {/* MOBILE HAMBURGER */}
         <div className="hamburger" onClick={() => setOpen(!open)}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </div>
@@ -51,9 +97,15 @@ export default function Navbar() {
           {navItems.map((item) => (
             <div
               key={item.id}
-              className="mobile-item"
+              className="nav-item"
               onClick={() => scrollTo(item.id)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
             >
+              {item.icon}
               {item.label}
             </div>
           ))}
