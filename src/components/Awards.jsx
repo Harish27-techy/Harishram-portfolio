@@ -12,7 +12,7 @@ export default function Awards() {
   const awards = [
     {
       title: "STAR Award 2025 – Striving To Achieve Results",
-      description: "Recognized for solving complex problems, taking strong ownership, and consistently delivering high-quality results",
+      description: "Recognized for solving complex problems, taking strong ownership, and delivering high-quality results",
       organization: "Bravura Technologies Pvt Ltd",
       date: "Dec 2025",
       icon: "trophy",
