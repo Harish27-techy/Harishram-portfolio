@@ -1,7 +1,19 @@
 import { User, MapPin, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function About() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const onResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const isMobile = width <= 640;
+  const isTablet = width > 640 && width <= 1024;
+
   const details = [
     {
       label: "Experience",
@@ -15,21 +27,31 @@ export default function About() {
     },
     {
       label: "Role",
-      value: "Software Development Engineer – L2",
+      value: "Software Development Engineer - L2",
       icon: <User size={18} />,
     },
   ];
 
   return (
-    <section id="about" style={{ padding: "140px 0" }}>
+    <section
+      id="about"
+      style={{
+        padding: isMobile ? "90px 0" : "140px 0",
+      }}
+    >
       <div className="container">
         {/* HEADER */}
-        <div style={{ textAlign: "center", marginBottom: "90px" }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: isMobile ? "48px" : "90px",
+          }}
+        >
           <motion.div
-            initial={{ opacity: 0, y: -40 }}
+            initial={{ opacity: 0, y: -24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.6 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -40,7 +62,7 @@ export default function About() {
               border: "1px solid rgba(255,255,255,0.25)",
               fontSize: "12px",
               letterSpacing: "0.15em",
-              marginBottom: "18px",
+              marginBottom: "16px",
             }}
           >
             <User size={14} />
@@ -48,7 +70,7 @@ export default function About() {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 50, scale: 0.92 }}
+            initial={{ opacity: 0, y: 36, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.6 }}
             transition={{
@@ -56,45 +78,59 @@ export default function About() {
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{
-              fontSize: "clamp(36px, 5vw, 56px)",
+              fontSize: "clamp(32px, 6vw, 56px)",
               fontWeight: 900,
+              lineHeight: 1.15,
             }}
           >
             Who I Am
           </motion.h2>
         </div>
 
-        {/* CONTENT */}
-        <div className="about-grid">
+        {/* MAIN GRID */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile
+              ? "1fr"
+              : isTablet
+                ? "1fr"
+                : "1.2fr 1fr",
+            gap: isMobile ? "44px" : "80px",
+            alignItems: "start",
+          }}
+        >
           {/* LEFT TEXT */}
           <div>
             <motion.p
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.4 }}
-              transition={{ delay: 0.1, duration: 0.8 }}
+              transition={{ duration: 0.7 }}
               style={{
-                fontSize: "17px",
+                fontSize: isMobile ? "16px" : "17px",
                 lineHeight: 1.8,
                 color: "rgba(255,255,255,0.8)",
-                marginBottom: "28px",
+                marginBottom: "26px",
+                textAlign: isMobile ? "center" : "left",
               }}
             >
-              Results-driven Software Engineer with 3+ years of experience
-              in full-stack development using Angular, Node.js, and AWS
+              Results-driven Software Engineer with 3+ years of experience in
+              full-stack development using Angular, Node.js, and AWS
               technologies. Passionate about building scalable, responsive,
               and high-performance web applications.
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.4 }}
-              transition={{ delay: 0.25, duration: 0.8 }}
+              transition={{ delay: 0.15, duration: 0.7 }}
               style={{
-                fontSize: "17px",
+                fontSize: isMobile ? "16px" : "17px",
                 lineHeight: 1.8,
                 color: "rgba(255,255,255,0.75)",
+                textAlign: isMobile ? "center" : "left",
               }}
             >
               Experienced in enterprise applications, RESTful APIs, database
@@ -103,32 +139,34 @@ export default function About() {
             </motion.p>
           </div>
 
-          {/* RIGHT INFO CARDS */}
+          {/* RIGHT INFO CARDS – DESKTOP SAFE */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: "24px",
+              gridTemplateColumns: isMobile
+                ? "1fr"
+                : "repeat(2, minmax(0, 1fr))",
+              gap: "22px",
             }}
           >
             {details.map((item, index) => (
               <motion.div
                 key={item.label}
-                initial={{ opacity: 0, y: 70, scale: 0.9 }}
+                initial={{ opacity: 0, y: 40, scale: 0.94 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: false, amount: 0.4 }}
                 transition={{
-                  delay: index * 0.15,
-                  duration: 0.8,
+                  delay: index * 0.12,
+                  duration: 0.7,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                whileHover={{ y: -8, scale: 1.04 }}
+                whileHover={!isMobile ? { y: -8, scale: 1.04 } : {}}
                 style={{
                   background: "rgba(255,255,255,0.08)",
                   border: "1px solid rgba(255,255,255,0.2)",
                   borderRadius: "18px",
                   padding: "22px",
-                  backdropFilter: "blur(20px)",
+                  backdropFilter: "blur(18px)",
                   display: "flex",
                   alignItems: "center",
                   gap: "14px",
@@ -140,9 +178,9 @@ export default function About() {
                   whileInView={{ scale: 1 }}
                   viewport={{ once: false }}
                   transition={{
-                    delay: 0.25 + index * 0.15,
+                    delay: 0.2 + index * 0.12,
                     type: "spring",
-                    stiffness: 300,
+                    stiffness: 260,
                     damping: 18,
                   }}
                   style={{
@@ -161,13 +199,18 @@ export default function About() {
                 </motion.div>
 
                 {/* TEXT */}
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "4px",
+                  }}
+                >
                   <div
                     style={{
-                      fontSize: "13px",
+                      fontSize: "12px",
                       letterSpacing: "0.12em",
                       color: "rgba(255,255,255,0.6)",
-                      marginBottom: "4px",
                     }}
                   >
                     {item.label.toUpperCase()}
@@ -177,6 +220,8 @@ export default function About() {
                     style={{
                       fontSize: "15px",
                       fontWeight: 600,
+                      lineHeight: 1.4,
+                      wordBreak: "break-word",
                     }}
                   >
                     {item.value}

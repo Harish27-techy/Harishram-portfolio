@@ -101,7 +101,7 @@
 }
 
 .navbar-inner {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   border-radius: 18px !important;
   margin: 0 auto;
   padding: 20px 24px;

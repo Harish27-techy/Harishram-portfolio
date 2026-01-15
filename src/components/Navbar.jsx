@@ -8,8 +8,9 @@ import {
   GraduationCap,
   Award,
   Mail,
-  ShieldCheck,
+  UserCircle2,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -32,39 +33,93 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner">
         {/* LEFT BRAND */}
-        <div
-          className="nav-logo"
+        <motion.div
           onClick={() => scrollTo("home")}
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "10px",
+            gap: "12px",
             cursor: "pointer",
           }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
         >
-          {/* PROFESSIONAL LOGO ICON */}
-          <ShieldCheck
-            size={22}
-            style={{
-              color: "#c7d2fe",
+          {/* PROFILE ICON */}
+          <motion.div
+            animate={{
+              boxShadow: [
+                "0 0 0 rgba(99,102,241,0)",
+                "0 0 18px rgba(99,102,241,0.45)",
+                "0 0 0 rgba(99,102,241,0)",
+              ],
             }}
-          />
+            transition={{
+              duration: 3.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              width: "34px",
+              height: "34px",
+              borderRadius: "50%",
+              background:
+                "linear-gradient(135deg, rgba(99,102,241,0.35), rgba(34,211,238,0.35))",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <UserCircle2 size={20} color="#e0e7ff" />
+          </motion.div>
 
-          {/* PREMIUM GRADIENT TEXT */}
-          <span
+          {/* BRAND TEXT */}
+          <motion.div
+            initial={{ backgroundPosition: "0% 50%" }}
+            animate={{ backgroundPosition: "200% 50%" }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            whileHover={{
+              textShadow:
+                "0 0 10px rgba(103,232,249,0.8), 0 0 30px rgba(99,102,241,0.6)",
+            }}
             style={{
               fontWeight: 900,
-              letterSpacing: "0.08em",
+              letterSpacing: "0.22em",
               fontSize: "15px",
               background:
-                "linear-gradient(90deg, #e0e7ff 0%, #c7d2fe 35%, #f8fafc 70%)",
+                "linear-gradient(90deg, #e0e7ff, #c7d2fe, #67e8f9, #e0e7ff)",
+              backgroundSize: "300% 100%",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              position: "relative",
+              lineHeight: 1,
             }}
           >
             HARISHRAM
-          </span>
-        </div>
+
+            {/* UNDERLINE ACCENT */}
+            <motion.span
+              initial={{ scaleX: 0 }}
+              whileHover={{ scaleX: 1 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              style={{
+                position: "absolute",
+                left: 0,
+                bottom: "-6px",
+                height: "2px",
+                width: "100%",
+                transformOrigin: "left",
+                borderRadius: "999px",
+                background:
+                  "linear-gradient(90deg, transparent, #67e8f9, transparent)",
+              }}
+            />
+          </motion.div>
+        </motion.div>
 
         {/* RIGHT DESKTOP NAV */}
         <div className="nav-items">
