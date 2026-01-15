@@ -12,14 +12,13 @@ export default function Awards() {
   const awards = [
     {
       title: "STAR Award 2025 – Striving To Achieve Results",
-      description:
-        "Recognized for strong problem-solving skills, ownership, and delivery excellence.",
+      description: "Recognized for solving complex problems, taking strong ownership, and consistently delivering high-quality results",
       organization: "Bravura Technologies Pvt Ltd",
       date: "Dec 2025",
       icon: "trophy",
     },
     {
-      title: "Certificate of Appreciation – Bravura HOUSING Module",
+      title: "Certificate of Appreciation – Bravura HOUSING module",
       description:
         "Awarded for playing a key role in the successful implementation and launch of the HOUSING module.",
       organization: "Bravura Technologies Pvt Ltd",
@@ -27,7 +26,7 @@ export default function Awards() {
       icon: "badge",
     },
     {
-      title: "Best Photography – 2nd Prize",
+      title: "Best Photography Competition – Second Prize",
       description:
         "Secured second place in the photography competition for creative excellence and visual storytelling.",
       organization: "Periyar Maniammai University",
