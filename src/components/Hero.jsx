@@ -183,7 +183,7 @@ export default function Hero() {
                                 whiteSpace: "normal",
                             }}
                         >
-                            Software Development Engineer
+                            Full Stack Developer
                         </span>
                     </motion.div>
 
