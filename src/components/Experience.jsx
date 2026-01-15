@@ -9,7 +9,7 @@ export default function Experience() {
       duration: "Feb 2023 – Present",
       points: [
         "Developed responsive and cross-browser compatible UIs using Angular, HTML5, CSS3, Bootstrap, and Flexbox.",
-        "Built and maintained enterprise-level SPAs using Angular (v4–v16), RxJS, Ngx libraries, and Nebular.",
+        "Built and maintained enterprise-level SPAs using Angular (v4–latest), RxJS, Ngx libraries, and Nebular.",
         "Integrated Google APIs for housing and location-based solutions.",
         "Optimized backend performance using DynamoDB queries, filters, and efficient SQL handling.",
         "Designed and integrated RESTful APIs using JSON and XML.",
